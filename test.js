@@ -15,15 +15,26 @@ app.use("/test", (req, res, next) => {
     res.end();
     // next();
 });
-
-app.use("/", (req, res, next) => {
-    fs.readFile(path.resolve(__dirname, "public", "index.html"), (err, data) => {
+app.use("/about/:username", (req, res, next) => {
+    res.send("username is " + req.params.username);
+    res.end();
+    // next();
+});
+app.get("/test2", (req, res) => {
+    res.send("test2 get");
+})
+app.post("/test2", (req, res) => {
+    res.send("test2 post");
+    req.on("data", (chunk) => {
+        console.log(chunk.toString());
+    })
+})
+app.get('/', (req, res) => {
+    fs.readFile(path.resolve(__dirname, 'public', 'index.html'), (err, data) => {
         if (err) {
-            res.status(500).send("Error ");
-            return next();
+            return res.status(500).send('Error Occured');
         }
-        res.status(200).send(data);
-        return next();
+        return res.status(200).send(data);
     });
 });
 
