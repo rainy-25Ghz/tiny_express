@@ -1,5 +1,6 @@
 # tiny_express
-模仿express.js的极简nodejs 后端框架
+模仿express.js的极简nodejs 后端框架。
+
 测试案例：
 ``` js
 const TinyExpress = require("./tinyExpress");
